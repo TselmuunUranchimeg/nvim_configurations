@@ -206,6 +206,16 @@ do
 end
 
 do
+  vim.pack.add {
+    {
+      src = 'https://github.com/saghen/blink.cmp',
+      version = 'v1',
+    },
+  }
+  require('blink.cmp').setup {}
+end
+
+do
   require 'plugins.mini'
   require 'plugins.neo-tree'
   require 'plugins.autopairs'
