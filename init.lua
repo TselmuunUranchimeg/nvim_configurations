@@ -145,6 +145,25 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank() end,
 })
 
+do
+  tmux_group = vim.api.nvim_create_augroup('TmuxRename', { clear = true })
+  vim.api.nvim_create_autocmd({ 'VimEnter' }, {
+    group = tmux_group,
+    callback = function()
+      if vim.bo.buftype ~= '' then return end
+      local window_name = vim.fs.basename(vim.api.nvim_buf_get_name(0))
+      -- Just a precaution
+      if window_name == '' then window_name = '[No Name]' end
+      vim.fn.system('tmux rename-window ' .. vim.fn.shellescape(window_name))
+    end,
+  })
+
+  vim.api.nvim_create_autocmd('VimLeave', {
+    group = tmux_group,
+    callback = function() vim.fn.system "tmux rename-window 'zsh'" end,
+  })
+end
+
 -- PackChanged has to be at the top since it stands for "Package Changed"
 vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)
