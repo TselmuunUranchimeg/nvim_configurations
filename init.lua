@@ -229,6 +229,14 @@ do
   vim.pack.add { 'https://github.com/OXY2DEV/markview.nvim' }
 end
 
+-- Inline-blame annotations
+do
+  vim.pack.add { 'https://github.com/f-person/git-blame.nvim' }
+  require('gitblame').setup {
+    enabled = true,
+  }
+end
+
 do
   vim.pack.add {
     {
