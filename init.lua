@@ -89,9 +89,6 @@ vim.o.confirm = true
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Use <leader>d to delete without copying
-vim.keymap.set('v', '<leader>d', '"_d', { desc = 'Delete without copying' })
-
 -- Diagnostic Config & Keymaps
 -- See :help vim.diagnostic.Opts
 vim.diagnostic.config {
